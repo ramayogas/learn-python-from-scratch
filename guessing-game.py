@@ -1,3 +1,5 @@
+import random
+
 def game():
     print("guess a number between 1 and 5")
     ran=random.randint(1,5)
