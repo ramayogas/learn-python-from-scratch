@@ -1,0 +1,765 @@
+
+
+
+Python roadmap · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python in 30 Days — Project-Based Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --bg: #0d0f14;
+    --surface: #151820;
+    --border: #222636;
+    --accent: #7c6af7;
+    --accent2: #4fd9a4;
+    --accent3: #f7a76c;
+    --text: #e8eaf2;
+    --muted: #7a7f96;
+    --week1: #7c6af7;
+    --week2: #4fd9a4;
+    --week3: #f7a76c;
+    --week4: #f76c8f;
+  }
+ 
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+  }
+ 
+  .container { max-width: 860px; margin: 0 auto; }
+ 
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 3rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--accent2);
+    border: 1px solid var(--accent2);
+    padding: 0.25rem 0.85rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 30%, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin: 0 auto 1.5rem;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; }
+ 
+  /* PHILOSOPHY */
+  .philosophy {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .philosophy strong { color: var(--text); }
+ 
+  /* WEEK CARD */
+  .week {
+    margin-bottom: 2.5rem;
+  }
+  .week-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .week-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.7rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .week-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .week-subtitle { font-size: 0.85rem; color: var(--muted); margin-top: 0.1rem; }
+ 
+  .week[data-week="1"] .week-tag { background: #7c6af720; color: var(--week1); border: 1px solid #7c6af740; }
+  .week[data-week="2"] .week-tag { background: #4fd9a420; color: var(--week2); border: 1px solid #4fd9a440; }
+  .week[data-week="3"] .week-tag { background: #f7a76c20; color: var(--week3); border: 1px solid #f7a76c40; }
+  .week[data-week="4"] .week-tag { background: #f76c8f20; color: var(--week4); border: 1px solid #f76c8f40; }
+ 
+  .week[data-week="1"] .week-title { color: var(--week1); }
+  .week[data-week="2"] .week-title { color: var(--week2); }
+  .week[data-week="3"] .week-title { color: var(--week3); }
+  .week[data-week="4"] .week-title { color: var(--week4); }
+ 
+  /* PROJECT CARD */
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .project-card-header {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .project-card-header:hover { background: #1a1d26; }
+  .project-name {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  .project-desc { font-size: 0.85rem; color: var(--muted); }
+  .project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+  .difficulty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .diff-beginner { background: #4fd9a415; color: var(--accent2); border: 1px solid #4fd9a430; }
+  .diff-intermediate { background: #f7a76c15; color: var(--accent3); border: 1px solid #f7a76c30; }
+  .diff-advanced { background: #f76c8f15; color: var(--week4); border: 1px solid #f76c8f30; }
+  .expand-icon { color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; transition: transform 0.2s; }
+  .project-card.open .expand-icon { transform: rotate(180deg); }
+ 
+  .project-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .project-card.open .project-body { display: block; }
+ 
+  .project-body h4 {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin: 1rem 0 0.5rem;
+  }
+  .project-body ul { padding-left: 0; list-style: none; }
+  .project-body ul li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .project-body ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+ 
+  .concepts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+  }
+  .concept-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    background: #ffffff08;
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.55rem;
+    border-radius: 4px;
+    color: var(--text);
+  }
+ 
+  .bonus-note {
+    background: #7c6af710;
+    border: 1px solid #7c6af730;
+    border-radius: 6px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin-top: 0.75rem;
+  }
+ 
+  /* TIMELINE */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+  .tl-cell {
+    background: var(--surface);
+    padding: 1rem;
+    text-align: center;
+  }
+  .tl-week { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 0.35rem; }
+  .tl-label { font-weight: 600; font-size: 0.9rem; }
+  .tl-cell:nth-child(1) .tl-label { color: var(--week1); }
+  .tl-cell:nth-child(2) .tl-label { color: var(--week2); }
+  .tl-cell:nth-child(3) .tl-label { color: var(--week3); }
+  .tl-cell:nth-child(4) .tl-label { color: var(--week4); }
+ 
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .footer code {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent2);
+  }
+ 
+  @media (max-width: 600px) {
+    .timeline { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+ 
+  <div class="hero">
+    <div class="hero-badge">PROJECT-BASED LEARNING</div>
+    <h1>Python in 30 Days</h1>
+    <p>No boring tutorials. Build real projects every week — from day one to Python developer.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Weeks</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Projects</div></div>
+      <div class="stat"><div class="stat-num">1</div><div class="stat-label">Goal: Developer</div></div>
+    </div>
+  </div>
+ 
+  <div class="philosophy">
+    <strong>The rule:</strong> Learn concepts <em>only when a project needs them</em>. Every day you write code that runs. You don't finish the month having read about Python — you finish it having <em>built with</em> Python.
+  </div>
+ 
+  <!-- OVERVIEW TIMELINE -->
+  <div class="timeline">
+    <div class="tl-cell"><div class="tl-week">WEEK 1</div><div class="tl-label">Python Core</div></div>
+    <div class="tl-cell"><div class="tl-week">WEEK 2</div><div class="tl-label">Data & Files</div></div>
+    <div class="tl-cell"><div class="tl-week">WEEK 3</div><div class="tl-label">APIs & OOP</div></div>
+    <div class="tl-cell"><div class="tl-week">WEEK 4</div><div class="tl-label">Capstone</div></div>
+  </div>
+ 
+  <!-- WEEK 1 -->
+  <div class="week" data-week="1">
+    <div class="week-header">
+      <div class="week-tag">WEEK 1 · DAYS 1–7</div>
+      <div>
+        <div class="week-title">Python Core — "Make It Run"</div>
+        <div class="week-subtitle">Variables, loops, functions, conditionals, strings. Build CLI tools.</div>
+      </div>
+    </div>
+ 
+    <!-- Project 1 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">🎯 Number Guessing Game</div>
+          <div class="project-desc">Day 1–2 · Your first real Python program</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-beginner">BEGINNER</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Computer picks a random number 1–100</li>
+          <li>User guesses; game says "too high / too low"</li>
+          <li>Track number of tries, show score at end</li>
+          <li>Ask to play again</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">variables</span>
+          <span class="concept-tag">input()</span>
+          <span class="concept-tag">int() casting</span>
+          <span class="concept-tag">while loops</span>
+          <span class="concept-tag">if / elif / else</span>
+          <span class="concept-tag">random module</span>
+          <span class="concept-tag">print formatting</span>
+        </div>
+        <div class="bonus-note">⚡ Bonus: Add a difficulty setting (easy = 10 tries, hard = 5 tries)</div>
+      </div>
+    </div>
+ 
+    <!-- Project 2 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">📝 Personal To-Do CLI App</div>
+          <div class="project-desc">Day 3–5 · A terminal app you'll actually use</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-beginner">BEGINNER</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Add, list, delete, and mark tasks as done</li>
+          <li>Save tasks to a .txt file so they persist</li>
+          <li>Menu-driven interface in terminal</li>
+          <li>Show tasks numbered with status (✓ / ✗)</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">lists</span>
+          <span class="concept-tag">dictionaries</span>
+          <span class="concept-tag">for loops</span>
+          <span class="concept-tag">functions</span>
+          <span class="concept-tag">file I/O open()</span>
+          <span class="concept-tag">f-strings</span>
+          <span class="concept-tag">enumerate()</span>
+        </div>
+        <div class="bonus-note">⚡ Bonus: Add task priorities (high/medium/low) and sort by priority</div>
+      </div>
+    </div>
+ 
+    <!-- Project 3 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">🔐 Password Generator</div>
+          <div class="project-desc">Day 6–7 · Functions & string manipulation</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-beginner">BEGINNER</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>User sets length and character types (symbols, numbers, uppercase)</li>
+          <li>Generate strong random passwords</li>
+          <li>Check password strength and give a score</li>
+          <li>Copy to clipboard (pyperclip library)</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">string module</span>
+          <span class="concept-tag">random.choices()</span>
+          <span class="concept-tag">function parameters</span>
+          <span class="concept-tag">return values</span>
+          <span class="concept-tag">pip install</span>
+          <span class="concept-tag">boolean flags</span>
+        </div>
+        <div class="bonus-note">⚡ Bonus: Save generated passwords to an encrypted text file</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- WEEK 2 -->
+  <div class="week" data-week="2">
+    <div class="week-header">
+      <div class="week-tag">WEEK 2 · DAYS 8–14</div>
+      <div>
+        <div class="week-title">Data & Files — "Make It Useful"</div>
+        <div class="week-subtitle">CSV, JSON, data manipulation, web scraping basics.</div>
+      </div>
+    </div>
+ 
+    <!-- Project 4 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">💰 Expense Tracker</div>
+          <div class="project-desc">Day 8–10 · CSV files & data analysis</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-intermediate">INTERMEDIATE</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Log expenses with category, amount, date</li>
+          <li>Store all data in a CSV file</li>
+          <li>Show monthly summary and totals per category</li>
+          <li>Show which category you overspend on</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">csv module</span>
+          <span class="concept-tag">datetime</span>
+          <span class="concept-tag">list comprehensions</span>
+          <span class="concept-tag">dictionary grouping</span>
+          <span class="concept-tag">sorted()</span>
+          <span class="concept-tag">sum() / max()</span>
+          <span class="concept-tag">try / except</span>
+        </div>
+        <div class="bonus-note">⚡ Bonus: Add a monthly budget limit per category with alerts</div>
+      </div>
+    </div>
+ 
+    <!-- Project 5 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">🌦️ Weather CLI Tool</div>
+          <div class="project-desc">Day 11–12 · APIs & JSON for the first time</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-intermediate">INTERMEDIATE</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Fetch real-time weather by city name using OpenWeatherMap API</li>
+          <li>Show temp, humidity, wind speed, condition</li>
+          <li>5-day forecast with daily summary</li>
+          <li>Handle errors (city not found, no internet)</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">requests library</span>
+          <span class="concept-tag">JSON parsing</span>
+          <span class="concept-tag">API keys / .env</span>
+          <span class="concept-tag">HTTP status codes</span>
+          <span class="concept-tag">error handling</span>
+          <span class="concept-tag">python-dotenv</span>
+        </div>
+        <div class="bonus-note">⚡ Bonus: Cache results for 10 minutes so you don't hit API limits</div>
+      </div>
+    </div>
+ 
+    <!-- Project 6 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">📰 News Headline Scraper</div>
+          <div class="project-desc">Day 13–14 · Web scraping with BeautifulSoup</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-intermediate">INTERMEDIATE</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Scrape top 10 headlines from a news site</li>
+          <li>Save them with timestamps to a JSON file</li>
+          <li>Filter headlines by keyword</li>
+          <li>Generate a daily digest text report</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">BeautifulSoup</span>
+          <span class="concept-tag">HTML parsing</span>
+          <span class="concept-tag">json module</span>
+          <span class="concept-tag">CSS selectors</span>
+          <span class="concept-tag">file writing</span>
+          <span class="concept-tag">string methods</span>
+        </div>
+        <div class="bonus-note">⚡ Bonus: Email yourself the daily digest automatically using smtplib</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- WEEK 3 -->
+  <div class="week" data-week="3">
+    <div class="week-header">
+      <div class="week-tag">WEEK 3 · DAYS 15–21</div>
+      <div>
+        <div class="week-title">OOP & Real Apps — "Make It Scalable"</div>
+        <div class="week-subtitle">Classes, modules, databases. Build things with structure.</div>
+      </div>
+    </div>
+ 
+    <!-- Project 7 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">📚 Library Management System</div>
+          <div class="project-desc">Day 15–17 · Object-Oriented Programming deep dive</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-intermediate">INTERMEDIATE</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Book class: title, author, ISBN, availability</li>
+          <li>Library class: add/remove/search/borrow books</li>
+          <li>Member class: track borrowed books & due dates</li>
+          <li>Save/load library state from JSON</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">classes & __init__</span>
+          <span class="concept-tag">methods</span>
+          <span class="concept-tag">inheritance</span>
+          <span class="concept-tag">__str__ / __repr__</span>
+          <span class="concept-tag">encapsulation</span>
+          <span class="concept-tag">class attributes</span>
+          <span class="concept-tag">multiple files</span>
+        </div>
+        <div class="bonus-note">⚡ Bonus: Add overdue detection and calculate late fees</div>
+      </div>
+    </div>
+ 
+    <!-- Project 8 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">🗄️ Student Grade Tracker with SQLite</div>
+          <div class="project-desc">Day 18–19 · Your first real database</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-intermediate">INTERMEDIATE</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Store students, subjects, and grades in SQLite</li>
+          <li>CRUD operations: add, view, update, delete</li>
+          <li>Calculate GPA per student and class average</li>
+          <li>Search and filter students by grade range</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">sqlite3 module</span>
+          <span class="concept-tag">SQL basics</span>
+          <span class="concept-tag">CREATE TABLE</span>
+          <span class="concept-tag">INSERT / SELECT</span>
+          <span class="concept-tag">WHERE / ORDER BY</span>
+          <span class="concept-tag">cursor & connection</span>
+        </div>
+        <div class="bonus-note">⚡ Bonus: Export full report as a formatted PDF using reportlab</div>
+      </div>
+    </div>
+ 
+    <!-- Project 9 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">🤖 Telegram / Discord Bot</div>
+          <div class="project-desc">Day 20–21 · Automation that lives on the internet</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-advanced">ADVANCED</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Bot responds to commands like /weather, /joke, /todo</li>
+          <li>Connects your Week 2 weather tool to a real chat</li>
+          <li>Sends scheduled daily messages (news digest)</li>
+          <li>Runs 24/7 (deploy to free tier on Railway or Render)</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">python-telegram-bot</span>
+          <span class="concept-tag">async / await</span>
+          <span class="concept-tag">event handlers</span>
+          <span class="concept-tag">environment variables</span>
+          <span class="concept-tag">deployment basics</span>
+          <span class="concept-tag">requirements.txt</span>
+        </div>
+        <div class="bonus-note">⚡ This is your first project running on the internet. Huge milestone.</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- WEEK 4 -->
+  <div class="week" data-week="4">
+    <div class="week-header">
+      <div class="week-tag">WEEK 4 · DAYS 22–30</div>
+      <div>
+        <div class="week-title">Capstone — "Make It Yours"</div>
+        <div class="week-subtitle">Pick one path. Build a portfolio-worthy project. Ship it.</div>
+      </div>
+    </div>
+ 
+    <!-- Project 10 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">🌐 Path A: Flask Web App</div>
+          <div class="project-desc">Day 22–30 · Build a URL shortener with a web UI</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-advanced">ADVANCED</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Paste a long URL → get a short code (like bit.ly)</li>
+          <li>Web interface with HTML forms, Flask routes</li>
+          <li>SQLite to store URLs + click count tracking</li>
+          <li>Dashboard showing your most-clicked links</li>
+          <li>Deploy live to Render (free)</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">Flask</span>
+          <span class="concept-tag">routes & views</span>
+          <span class="concept-tag">HTML templates (Jinja2)</span>
+          <span class="concept-tag">GET / POST</span>
+          <span class="concept-tag">SQLAlchemy basics</span>
+          <span class="concept-tag">deployment</span>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Project 11 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">📊 Path B: Data Analysis Project</div>
+          <div class="project-desc">Day 22–30 · Analyze a real-world dataset and tell a story</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-advanced">ADVANCED</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Pick a Kaggle dataset (Netflix, Spotify, COVID, etc.)</li>
+          <li>Clean and explore data with pandas</li>
+          <li>Create 5+ charts: trends, comparisons, distributions</li>
+          <li>Write a Jupyter Notebook report with insights</li>
+          <li>Publish on GitHub with a clear README</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">pandas</span>
+          <span class="concept-tag">matplotlib / seaborn</span>
+          <span class="concept-tag">DataFrame operations</span>
+          <span class="concept-tag">groupby()</span>
+          <span class="concept-tag">Jupyter Notebook</span>
+          <span class="concept-tag">data cleaning</span>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Project 12 -->
+    <div class="project-card" onclick="toggle(this)">
+      <div class="project-card-header">
+        <div>
+          <div class="project-name">⚙️ Path C: Automation Script Suite</div>
+          <div class="project-desc">Day 22–30 · Scripts that save you hours every week</div>
+        </div>
+        <div class="project-meta">
+          <span class="difficulty diff-advanced">ADVANCED</span>
+          <span class="expand-icon">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>What you build</h4>
+        <ul>
+          <li>Auto-rename & organize files by type/date in a folder</li>
+          <li>Batch resize images in a directory</li>
+          <li>Auto-fill and submit a web form with Selenium</li>
+          <li>Schedule all scripts to run daily with schedule library</li>
+          <li>Package with a single CLI entry point</li>
+        </ul>
+        <h4>Concepts you'll learn</h4>
+        <div class="concepts-grid">
+          <span class="concept-tag">pathlib / os / shutil</span>
+          <span class="concept-tag">Pillow (images)</span>
+          <span class="concept-tag">Selenium</span>
+          <span class="concept-tag">argparse</span>
+          <span class="concept-tag">schedule</span>
+          <span class="concept-tag">packaging scripts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="footer">
+    <p>After 30 days you'll have <code>12 projects</code> in your GitHub. That's a portfolio. That's a Python developer.</p>
+    <p style="margin-top:0.5rem; font-size:0.8rem;">Stuck? → Google it. Then Stack Overflow. Then ask an AI. In that order. That's how real devs work.</p>
+  </div>
+ 
+</div>
+ 
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
+ 
+
