@@ -1,3 +1,4 @@
+#default mode, only guessing
 import random
 
 def game():
