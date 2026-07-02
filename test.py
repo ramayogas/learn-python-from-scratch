@@ -1,33 +1,26 @@
-import random
+tasks = []
 
-# def play_again():
-#         restart = input("play again? (y/n): ")
-#         if restart =="y":
-#             game()
-#         else:
-#             print("Thanks for playing")
-
-def game():
-    print("guess a number between 1 and 5")
-    ran=random.randint(1,5)
-    
-    try:
-        user_input=int(input("enter your number: "))
-    except ValueError: 
-        print('not a number')
-        return
-
-    if user_input == ran:
-            print("you win") 
-    else:    
-        print("you lose")   
-        print("your number is", user_input, "and the number is", ran) 
-game()
 while True:
-    restart = input("play again? (y/n): ")
+    print("Menu: 1. add task 2.See Task 3. edit status 4. delete task 5. view tasks 6. exit")
+    choice = input("Choose menu: ")
     
-    if restart == "y":
-        game()
-    else:
-        print("thank you")
-        break
+    if choice == "1":
+        new_task = input("Enter a new task: ")
+        tasks.append(
+            {   
+                "id": len(tasks) + 1,
+                "task": new_task,
+                "status": None,
+            }
+        )
+    elif choice == "2":
+        print("Current tasks: ", tasks)
+    elif choice == "3":
+        print("Current tasks: ", tasks )
+        task_id = input("Enter the task ID to edit: ")
+        
+        for task in tasks:
+            if task["id"] == int(task_id):
+                new_status = input("Add new status: ")
+                task["status"] = new_status
+            break
