@@ -1,7 +1,7 @@
 tasks = []
 
 while True:
-    print("Menu: \n1. add task \n2. See Task \n3. edit status \n4. delete task \n5. print tasks \n6. exit",)
+    print("Menu: \n1. add task \n2. See Task and Status \n3. Edit Status \n4. Delete Task \n5. Print Tasks \n6. Exit",)
     choice = input("Choose menu: ")
     
     if choice == "1":
@@ -15,10 +15,10 @@ while True:
         )
     elif choice == "2":
         for task in tasks:
-            print(task["id"],"-", task["task"])
+            print(task["id"],"-", task["task"], "-", "Status: " ,task["status"])
     elif choice == "3":
         for task in tasks:
-            print(task["id"],"-", task["task"])
+            print(task["id"],"-", task["task"], "-", "Status: " ,task["status"])
         task_id = input("Enter the task ID to edit: ")
         
         for task in tasks:
