@@ -1,7 +1,7 @@
 tasks = []
 
 while True:
-    print("Menu: \n1. add task \n2. See Task and Status \n3. Edit Status \n4. Delete Task \n5. Print Tasks \n6. Exit",)
+    print("Menu: \n1. Add Task \n2. See Task and Status \n3. Edit Status \n4. Delete Task \n5. Print Tasks \n6. Exit",)
     choice = input("Choose menu: ")
     
     if choice == "1":
@@ -13,9 +13,11 @@ while True:
                 "status": None,
             }
         )
+        
     elif choice == "2":
         for task in tasks:
             print(task["id"],"-", task["task"], "-", "Status: " ,task["status"])
+            
     elif choice == "3":
         for task in tasks:
             print(task["id"],"-", task["task"], "-", "Status: " ,task["status"])
@@ -26,6 +28,17 @@ while True:
                 new_status = input("Add new status: ")
                 task["status"] = new_status
             continue
+        
+    elif choice == "4":
+        for task in tasks:
+            print(task["id"],"-", task["task"], "-", "Status: " ,task["status"])
+        task_id = input("Enter the task ID to delete: ")
+        
+        for task in tasks:
+            if task["id"] == int(task_id):
+                del task["id"]
+            continue
+        print("sucessfully deleted")
         
     elif choice == "5":
         with open("task_list.txt", "w") as file:
