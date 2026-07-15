@@ -34,13 +34,25 @@ while True:
             print(task["id"],"-", task["task"], "-", "Status: " ,task["status"])
         task_id = input("Enter the task ID to delete: ")
         
-        for task in tasks:
-            if task["id"] == int(task_id):
-                del task["id"]
+        for i,task in enumerate(tasks):
+            if task["id"] == int (task_id):
+                print(task["id"],"-", task["task"], "sucessfully deleted")
+                del tasks[i]
             continue
-        print("sucessfully deleted")
         
-    elif choice == "5":
+    elif choice == "5":        
+        
+        for i,task in enumerate(tasks):
+            x = task["title"] - "Status: ", task["status"]
+            print(x)
+        
         with open("task_list.txt", "w") as file:
-            file.write("\n".join(tasks))
+            file.write(x)
             print("task list saved to task_list.txt")
+        
+        with open("task_list.txt","r") as file:
+            print(file.read())  
+        
+    elif choice == "6":
+        print("Thank you")
+        break
